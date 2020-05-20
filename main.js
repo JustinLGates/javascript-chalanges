@@ -58,3 +58,21 @@ function evenOdd(num) {
   return false;
 }
 evenOdd(23);
+let re = /[a-zA-z]/;
+function pigIt(str) {
+  let answer = [];
+  let words = str.split(" ");
+  for (let i = 0; i < words.length; i++) {
+    if (re.test(words[i])) {
+      let end = words[i][0] + "ay";
+      answer.push(words[i].slice(1) + end);
+    } else {
+      answer.push(words[i]);
+    }
+  }
+
+  return answer.join(" ");
+}
+
+console.log(pigIt("Pig , latin is cool ?")); //'igPay atinlay siay oolcay'
+console.log(pigIt("This . is my string !")); //'hisTay siay ymay tringsay'
