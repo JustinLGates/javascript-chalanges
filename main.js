@@ -45,3 +45,16 @@ function symmDiff(arr1, arr2) {
 }
 
 symmDiff([1, 2, 3, 5, 7, 8], [1, 2, 3, 4, 5, 45, 34]); //4 45 34 8
+
+// takes num 10-99 if one even and one odd return true else false
+function evenOdd(num) {
+  let str = num.toString();
+  if (!(parseInt(str[0]) % 2) && parseInt(str[1]) % 2) {
+    return true;
+  }
+  if (parseInt(str[0]) % 2 && !(parseInt(str[1]) % 2)) {
+    return true;
+  }
+  return false;
+}
+evenOdd(23);
