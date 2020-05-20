@@ -11,7 +11,7 @@ function findLongWord(str) {
   return longestWord;
 }
 //return if a word is a palindrome
-// o n
+// o n linear
 function isPalindrome(str) {
   for (let i = 0; i < str.length; i++) {
     if (str[i] != str[str.length - 1 - i]) {
@@ -23,11 +23,13 @@ function isPalindrome(str) {
 
 isPalindrome(" racecar");
 
+//o of n * 2 ? so o of n linear
 function symmDiff(arr1, arr2) {
-  let arr = [...arr1, ...arr2];
+  let arr = [...arr1, ...arr2]; // time is spread a qick oporation?
   let hashMap = {};
   for (let i = 0; i < arr.length; i++) {
     if (hashMap[arr[i]] == true) {
+      //look up time on obj prop?
       hashMap[arr[i]] = false;
     } else {
       hashMap[arr[i]] = true;
@@ -39,7 +41,7 @@ function symmDiff(arr1, arr2) {
       answer.push(arr[i]);
     }
   }
-  console.log(answer);
+  return answer;
 }
 
 symmDiff([1, 2, 3, 5, 7, 8], [1, 2, 3, 4, 5, 45, 34]); //4 45 34 8
