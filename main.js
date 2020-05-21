@@ -74,5 +74,32 @@ function pigIt(str) {
   return answer.join(" ");
 }
 
-console.log(pigIt("Pig , latin is cool ?")); //'igPay atinlay siay oolcay'
-console.log(pigIt("This . is my string !")); //'hisTay siay ymay tringsay'
+// console.log(pigIt("Pig , latin is cool ?")); //'igPay atinlay siay oolcay'
+
+function mostCommonLetter(str) {
+  let answer = "";
+  str = str.split("");
+  let map = {};
+  for (let i = 0; i < str.length; i++) {
+    let letter = str[i];
+    if (!map[letter]) {
+      map[letter] = 1;
+    } else {
+      map[letter]++;
+    }
+  }
+  console.log(map);
+  let largest = 0;
+  let bigLetter = "";
+  for (let i = 0; i < str.length; i++) {
+    const letter = str[i];
+    if (map[letter] > largest) {
+      largest = map[letter];
+      bigLetter = letter;
+    }
+  }
+  console.log(bigLetter);
+  return answer;
+}
+
+console.log(mostCommonLetter("hello"));
