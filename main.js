@@ -1,117 +1,124 @@
-let canvas = document.querySelector("canvas");
-canvas.width = window.innerWidth - 1;
-canvas.height = window.innerHeight - 1;
-let c = canvas.getContext("2d");
+// let canvas = document.querySelector("canvas");
+// canvas.width = window.innerWidth - 2;
+// canvas.height = window.innerHeight - 2;
+// let c = canvas.getContext("2d");
 
-let circles = [];
-function makeCircle(amt = 1) {
-  for (let i = 0; i < amt; i++) {
-    let r = randRadius();
-    let newCircle = {
-      velX: Math.random() * 2.5 + -(Math.random() * 2.5),
-      velY: -(Math.random() * 1.5 + 1),
-      radius: r,
-      posY: innerHeight - r,
-      posX: Math.random() * innerWidth + r - r,
-      color: randColor(),
-      arch: Math.PI * 2,
-    };
-    circles.push(newCircle);
-  }
-}
-function startCircles(amt = 1) {
-  for (let i = 0; i < amt; i++) {
-    let r = randRadius();
-    let newCircle = {
-      id: Math.random() * 4,
-      velX: Math.random() * 1.5 + -(Math.random() * 1.5),
-      velY: -(Math.random() * 1.5),
-      radius: r,
-      posY: Math.random() * innerHeight,
-      posX: Math.random() * innerWidth + r - r,
-      color: randColor(),
-      arch: Math.PI * 2,
-    };
-    circles.push(newCircle);
-  }
-}
-startCircles(50);
-function randValues() {
-  let randVals = {
-    posY: (innerHeight -= window.innerHeight),
-    posX: Math.random() * 150 + 50,
-    color: randColor(),
-  };
-  return randVals;
-}
+// let circles = [];
+// function makeCircle() {
+//   let r = randRadius();
+//   let newCircle = {
+//     velX: Math.floor(Math.random() * 1.5 + -(Math.random() * 1.5)),
+//     velY: -Math.floor(Math.random() * 1.5 + 0.5),
+//     radius: r,
+//     posY: innerHeight - r,
+//     posX: Math.random() * innerWidth + r - r,
+//     color: randColor(),
+//     arch: Math.PI * 2,
+//   };
+//   circles.push(newCircle);
+// }
 
-function animate() {
-  c.clearRect(0, 0, innerWidth, innerHeight);
-  circles.forEach((circle) => {
-    c.strokeStyle = circle.color;
-    c.beginPath();
-    c.arc(circle.posX, circle.posY, circle.radius, 0, Math.PI * 2, false);
-    c.fillStyle = circle.color;
-    c.fill();
-    c.stroke();
-    // if (circle.posX + circle.radius > innerWidth) {
-    //   circle.velX = -circle.velX;
-    // } else if (circle.posX - circle.radius <= 0) {
-    //   circle.velX = -circle.velX;
-    // }
-    // if (circle.posY + circle.radius > innerHeight) {
-    //   circle.velY = -circle.velY;
-    // } else if (circle.posY + 10 <= 0) {
-    //   circle.velY = -circle.velY;
+// function startCircles(amt = 1) {
+//   for (let i = 0; i < amt; i++) {
+//     let r = randRadius();
+//     let newCircle = {
+//       id: Math.random() * 4,
+//       velX: Math.floor(Math.random() * 1.5 + -(Math.random() * 1.5)),
+//       velY: -Math.floor(Math.random() * 1.5 + 0.5),
+//       radius: r,
+//       posY: Math.random() * innerHeight,
+//       posX: Math.random() * innerWidth + r - r,
+//       color: randColor(),
+//       arch: Math.PI * 2,
+//     };
+//     circles.push(newCircle);
+//   }
+// }
+// startCircles(100);
+// function randValues() {
+//   let randVals = {
+//     posY: (innerHeight -= window.innerHeight),
+//     posX: Math.random() * 150 + 50,
+//     color: randColor(),
+//   };
+//   return randVals;
+// }
 
-    //   let index = circles.findIndex((c) => c.radius == circle.radius);
-    //   circles.splice(index, 1);
-    //   makeCircle();
-    // }
-    if (circle.posY < -circle.radius) {
-      let index = circles.findIndex((c) => c.id == circle.id);
-      circles.splice(index, 1);
-      makeCircle();
-    }
-    circle.posY += circle.velY;
-    circle.posX += circle.velX;
-  });
-  requestAnimationFrame(animate);
-  //
-  // const FRAMES_PER_SECOND = 30;  // Valid values are 60,30,20,15,10...
-  // // set the mim time to render the next frame
-  // const FRAME_MIN_TIME = (1000/60) * (60 / FRAMES_PER_SECOND) - (1000/60) * 0.5;
-  // var lastFrameTime = 0;  // the last frame time
-  // function animate(time){
-  //     if(time-lastFrameTime < FRAME_MIN_TIME){ //skip the frame if the call is too early
-  //         requestAnimationFrame(animate);
-  //         return; // return as there is nothing to do
-  //     }
-  //     lastFrameTime = time; // remember the time of the rendered frame
-  //     // render the frame
-  //     requestAnimationFrame(animate); // get next farme
-  // }
-  // requestAnimationFrame(animate); // start animation
+// const FRAMES_PER_SECOND = 24; // Valid values are 60,30,20,15,10...
+// // set the mim time to render the next frame
+// const FRAME_MIN_TIME =
+//   (1000 / 60) * (60 / FRAMES_PER_SECOND) - (1000 / 60) * 0.5;
+// var lastFrameTime = 0; // the last frame time
+// function animate(time) {
+//   if (time - lastFrameTime < FRAME_MIN_TIME) {
+//     //skip the frame if the call is too early
+//     requestAnimationFrame(animate);
+//     return; // return as there is nothing to do
+//   }
+//   lastFrameTime = time; // remember the time of the rendered frame
+//   // render the frame
 
-  //
-}
-animate();
+//   c.clearRect(0, 0, innerWidth, innerHeight);
+//   circles.forEach((circle) => {
+//     c.strokeStyle = circle.color;
+//     c.beginPath();
+//     c.arc(circle.posX, circle.posY, circle.radius, 0, Math.PI * 2, false);
+//     c.fillStyle = circle.color;
+//     c.fill();
+//     c.stroke();
+//     // if (circle.posX + circle.radius > innerWidth) {
+//     //   circle.velX = -circle.velX;
+//     // } else if (circle.posX - circle.radius <= 0) {
+//     //   circle.velX = -circle.velX;
+//     // }
+//     // if (circle.posY + circle.radius > innerHeight) {
+//     //   circle.velY = -circle.velY;
+//     // } else if (circle.posY + 10 <= 0) {
+//     //   circle.velY = -circle.velY;
 
-function randRadius(max = 30) {
-  return Math.random() * max + 5;
-}
-function randColor() {
-  let rand = Math.floor(Math.random() * 9) + 1;
-  let color = "";
-  if (rand <= 3) {
-    color = "#ff94a9";
-  } else if (rand <= 6) {
-    color = "#80e5c3";
-  } else {
-    color = "#ffff66";
-  }
-  return color;
-}
+//     //   let index = circles.findIndex((c) => c.radius == circle.radius);
+//     //   circles.splice(index, 1);
+//     //   makeCircle();
+//     // }
+//     if (circle.posY < -circle.radius) {
+//       let index = circles.findIndex((c) => c.id == circle.id);
+//       circles.splice(index, 1);
+//       makeCircle();
+//     }
+//     circle.posY += circle.velY;
+//     circle.posX += circle.velX;
+//   });
+//   c.fillRect(innerWidth / 2 - 80, innerHeight / 2 - 150, 300, 300);
+//   c.fillStyle = "#111";
+//   c.stroke();
+
+//   c.font = "48px Arial";
+//   c.fillText("Hello World", innerWidth / 2 - 48, innerHeight / 2);
+//   requestAnimationFrame(animate);
+// }
+// // animate();
+// requestAnimationFrame(animate); // get next farme
+// function randRadius(max = 30) {
+//   return Math.random() * max + 5;
+// }
+// function randColor() {
+//   let rand = Math.floor(Math.random() * 9) + 1;
+//   let color = "";
+//   if (rand <= 3) {
+//     color = "#ff94a9";
+//   } else if (rand <= 6) {
+//     color = "#80e5c3";
+//   } else {
+//     color = "#ffff66";
+//   }
+//   return color;
+// }
+
+// function numInStr(arr){
+
+// }
+
+// numInStr(["1a", "a", "2b", "b"])
 
 //
 //
@@ -175,6 +182,32 @@ function randColor() {
 // }
 // anim2();
 
+function isPandigital(num) {
+  let dict = {};
+  let str = num.toString();
+  str.forEach((elem) => {
+    dict[elem] = dict[elem] || 0;
+  });
+  return dict.length == 9;
+}
+
+// function findDouble(str) {
+//   let dict = {};
+//   let answer = "";
+//   for (let i = 0; i < str.length; i++) {
+//     dict[str[i]] = dict[str[i]] || 0;
+//     dict[str[i]]++;
+//   }
+//   for (var key in dict) {
+//     let value = dict[key];
+//     if (value > 1) {
+//       answer += key;
+//     }
+//   }
+//   console.log(answer);
+// }
+// findDouble("a a b c c c d e f d g f g");
+
 // O of n
 //find longest word in a string
 function findLongWord(str) {
@@ -220,6 +253,7 @@ function symmDiff(arr1, arr2) {
   }
   return answer;
 }
+console.log(symmDiff([1, 2, 3, 5, 7, 8], [1, 2, 3, 4, 5, 45, 34]));
 
 symmDiff([1, 2, 3, 5, 7, 8], [1, 2, 3, 4, 5, 45, 34]); //4 45 34 8
 
